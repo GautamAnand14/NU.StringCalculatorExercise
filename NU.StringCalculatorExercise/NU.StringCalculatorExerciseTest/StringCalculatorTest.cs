@@ -15,9 +15,11 @@ namespace NU.StringCalculatorExerciseTest
             stringCalculator = new StringCalculator();
         }
 
-        [TestMethod]
-        public void StringCalculator1()
+        [DataTestMethod]
+        [DataRow("", 0)]
+        public void Add_EmptyString_Is_Passed_ReturnZero(string input, int expected)
         {
+            Assert.AreEqual(stringCalculator.Add(input), expected);
         }
     }
 }
