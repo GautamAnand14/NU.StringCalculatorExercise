@@ -10,7 +10,7 @@ namespace NU.StringCalculatorExercise
     {
         public int Add(string numbers)
         {
-            var allNumbers = numbers.Split(',').ToList().Take(2);
+            var allNumbers = numbers.Split(',').ToList();
 
             if (string.IsNullOrEmpty(numbers))
                 return 0;
