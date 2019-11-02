@@ -10,12 +10,12 @@ namespace NU.StringCalculatorExercise
     {
         public int Add(string numbers)
         {
-            var allNumbers = numbers.Split(',').ToList();
+            int sum = 0;
 
             if (string.IsNullOrEmpty(numbers))
                 return 0;
             else
-                return allNumbers.Sum(x => Convert.ToInt32(x));
+                return sum;
         }
     }
 }
