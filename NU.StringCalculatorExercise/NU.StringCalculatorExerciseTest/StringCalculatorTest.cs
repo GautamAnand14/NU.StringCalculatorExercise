@@ -21,5 +21,17 @@ namespace NU.StringCalculatorExerciseTest
         {
             Assert.AreEqual(stringCalculator.Add(input), expected);
         }
+
+        [DataTestMethod]
+        [DataRow("0,1", 1)]
+        [DataRow("1,1", 2)]
+        [DataRow("1, 1, 1", 3)]
+        [DataRow("1, 2, 3", 6)]
+        public void Add_PassMultipleStringNumbers__ReturnTheirSum(string input, int expected)
+        {
+            Assert.AreEqual(stringCalculator.Add(input), expected);
+        }
+
+
     }
 }
