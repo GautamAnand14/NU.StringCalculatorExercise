@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NU.StringCalculatorExercise
@@ -22,8 +23,16 @@ namespace NU.StringCalculatorExercise
                 {
                     IsDefaultDelimiter = false;
                     int startIndex = (numbers.IndexOf("//") + 2);
-                    string customeDelimiter = numbers.Substring(startIndex, (numbers.IndexOf("\n") - startIndex));
-                    strDelimiter[0] = customeDelimiter;
+                    string customDelimiter = numbers.Substring(startIndex, (numbers.IndexOf("\n") - startIndex));
+
+                    if (customDelimiter.Contains('[') && customDelimiter.Contains(']'))
+                    {
+                        strDelimiter = Regex.Matches(customDelimiter, @"(?<=\[).+?(?=\])").Cast<Match>().Select(m => m.Value).ToArray();
+                    }
+                    else
+                    {
+                        strDelimiter[0] = customDelimiter;
+                    }
                 }
 
                 var splitNumbers = SplitNumber(numbers, strDelimiter);

@@ -82,5 +82,13 @@ namespace NU.StringCalculatorExerciseTest
         {
             Assert.AreEqual(stringCalculator.Add(input), expected);
         }
+
+
+        [DataTestMethod]
+        [DataRow("Multiple Length Delimiter: (\"//[***]\n1***2***3\",6)", "//[***]\n1***2***3", 6)]
+        public void Add_Pass_A_String_That_Contains_Any_length_Delimiter_Use_That_Delimiter_Return_Their_Sum(string testMethodType, string input, int expected)
+        {
+            Assert.AreEqual(stringCalculator.Add(input), expected);
+        }
     }
 }
