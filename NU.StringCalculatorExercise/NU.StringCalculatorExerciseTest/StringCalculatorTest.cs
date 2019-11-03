@@ -17,7 +17,7 @@ namespace NU.StringCalculatorExerciseTest
 
         [DataTestMethod]
         [DataRow("", 0)]
-        public void Add_EmptyString_Is_Passed_ReturnZero(string input, int expected)
+        public void Add_Pass_EmptyString_ReturnZero(string input, int expected)
         {
             Assert.AreEqual(stringCalculator.Add(input), expected);
         }
@@ -25,7 +25,7 @@ namespace NU.StringCalculatorExerciseTest
         [DataTestMethod]
         [DataRow("0,1", 1)]
         [DataRow("1,1", 2)]
-        public void Add_Two_Integers_Are_Passed_Their_Sum_Is_Return(string input, int expected)
+        public void Add_Pass_Two_Integers_Return_Their_Sum(string input, int expected)
         {
             Assert.AreEqual(stringCalculator.Add(input), expected);
         }
@@ -43,7 +43,7 @@ namespace NU.StringCalculatorExerciseTest
         [DataTestMethod]
         [DataRow("ArgumentException", "0,A", 0)]
         [DataRow("ArgumentException", "1,\n", 0)]
-        public void Add_Invliad_Number_Passed_Trow_An_Argument_Exception(string paramters, string input, int expected)
+        public void Add_Invliad_Number_Passed_Trow_An_Argument_Exception(string testMethodType, string input, int expected)
         {
             Assert.ThrowsException<ArgumentException>(() => stringCalculator.Add(input));
         }
@@ -63,6 +63,16 @@ namespace NU.StringCalculatorExerciseTest
         public void Add_Pass_Custom_Single_Delimiter_Use_That_Delimiter_Return_Their_Sum(string input, int expected)
         {
             Assert.AreEqual(stringCalculator.Add(input), expected);
+        }
+
+        [DataTestMethod]
+        [DataRow("Pass one negitive number : (\"1,-2\")", "1,-2", "-2")]
+        [DataRow("Pass multiple negitive numbers : (\"1,-2,-4\")", "1,-2,-4", "-2,-4")]
+        public void Add_Pass_Negative_Number_Throw_An_Exception(string testMethodType, string input, string expected)
+        {
+            String errorMessage = $"negatives not allowed- {expected}";
+            var ex = Assert.ThrowsException<Exception>(() => stringCalculator.Add(input));
+            Assert.AreEqual(ex.Message, errorMessage);
         }
     }
 }

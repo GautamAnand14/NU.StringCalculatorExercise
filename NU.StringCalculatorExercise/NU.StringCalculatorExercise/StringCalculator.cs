@@ -52,10 +52,17 @@ namespace NU.StringCalculatorExercise
         private int Sum(string[] numbers)
         {
             int sum = 0;
+            int checkNegitiveValue;
             foreach (var number in numbers)
             {
                 if (int.TryParse(number, out int _number))
                 {
+                    if (IsNumberNegitive(_number))
+                    {
+                        var allNegitiveNumbers = numbers.Where(x => int.TryParse(x, out checkNegitiveValue) && checkNegitiveValue < 0).ToArray();
+                        string negitiveValues = string.Join(",", allNegitiveNumbers.Select(s => s.ToString()));
+                        throw new Exception($"negatives not allowed- {negitiveValues}");
+                    }
                     sum += _number;
                 }
                 else
@@ -64,6 +71,14 @@ namespace NU.StringCalculatorExercise
                 }
             }
             return sum;
+        }
+
+        private bool IsNumberNegitive(int number)
+        {
+            if (number < 0)
+                return true;
+
+            return false;
         }
     }
 }
