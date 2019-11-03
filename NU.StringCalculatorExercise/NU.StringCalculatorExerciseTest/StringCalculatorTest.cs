@@ -74,5 +74,13 @@ namespace NU.StringCalculatorExerciseTest
             var ex = Assert.ThrowsException<Exception>(() => stringCalculator.Add(input));
             Assert.AreEqual(ex.Message, errorMessage);
         }
+
+        [DataTestMethod]
+        [DataRow("Sinlge greater the 1000 numers : (\"3,2,1001,4\",9)", "3,2,1001,4", 9)]
+        [DataRow("Multiple greater the 1000 numbers : (\"3,2002,1001,4\",7)", "3,2002,1001,4", 7)]
+        public void Add_Pass_String_That_Contains_Number_Greater_Than_One_Thousand_Ignore_Numbers_Greater_Than_One_Thousand(string testMethodType, string input, int expected)
+        {
+            Assert.AreEqual(stringCalculator.Add(input), expected);
+        }
     }
 }

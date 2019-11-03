@@ -63,7 +63,8 @@ namespace NU.StringCalculatorExercise
                         string negitiveValues = string.Join(",", allNegitiveNumbers.Select(s => s.ToString()));
                         throw new Exception($"negatives not allowed- {negitiveValues}");
                     }
-                    sum += _number;
+                    if (_number < 1000)
+                        sum += _number;
                 }
                 else
                 {
