@@ -52,7 +52,15 @@ namespace NU.StringCalculatorExerciseTest
         [DataRow("0,1", 1)]
         [DataRow("1,1", 2)]
         [DataRow("1,1\n2", 4)]
-        public void Add_Pass_Multiple_String_Numbers_WithCommas_And_NewLine__Return_Their_Sum(string input, int expected)
+        public void Add_Pass_Multiple_String_Numbers_WithCommas_And_NewLine_Return_Their_Sum(string input, int expected)
+        {
+            Assert.AreEqual(stringCalculator.Add(input), expected);
+        }
+
+        [DataTestMethod]
+        [DataRow("//;\n1;2", 3)]
+        [DataRow("//,\n2,2", 4)]
+        public void Add_Pass_Custom_Single_Delimiter_Use_That_Delimiter_Return_Their_Sum(string input, int expected)
         {
             Assert.AreEqual(stringCalculator.Add(input), expected);
         }

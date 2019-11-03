@@ -8,6 +8,7 @@ namespace NU.StringCalculatorExercise
 {
     public class StringCalculator
     {
+        bool IsDefaultDelimiter = true;
         public int Add(string numbers)
         {
             try
@@ -16,6 +17,14 @@ namespace NU.StringCalculatorExercise
                     return 0;
 
                 string[] strDelimiter = { ",", "\n" };
+
+                if (numbers.StartsWith("//"))
+                {
+                    IsDefaultDelimiter = false;
+                    int startIndex = (numbers.IndexOf("//") + 2);
+                    string customeDelimiter = numbers.Substring(startIndex, (numbers.IndexOf("\n") - startIndex));
+                    strDelimiter[0] = customeDelimiter;
+                }
 
                 var splitNumbers = SplitNumber(numbers, strDelimiter);
                 if (splitNumbers == null)
@@ -33,6 +42,9 @@ namespace NU.StringCalculatorExercise
         {
             if (numbers.EndsWith("\n"))
                 throw new ArgumentException("Invalid Input");
+
+            if (!IsDefaultDelimiter)
+                numbers = numbers.Substring(numbers.IndexOf("\n") + 1);
 
             return numbers.Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
         }
