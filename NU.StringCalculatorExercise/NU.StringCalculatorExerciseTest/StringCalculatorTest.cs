@@ -34,7 +34,25 @@ namespace NU.StringCalculatorExerciseTest
         [DataRow("0,1", 1)]
         [DataRow("1,1", 2)]
         [DataRow("1,1,2", 4)]
-        public void Add_Pass_Multiple_String_Numbers__Return_Their_Sum(string input, int expected)
+        public void Add_Pass_Multiple_String_Numbers_WithCommas_Return_Their_Sum(string input, int expected)
+        {
+            Assert.AreEqual(stringCalculator.Add(input), expected);
+        }
+
+
+        [DataTestMethod]
+        [DataRow("ArgumentException", "0,A", 0)]
+        [DataRow("ArgumentException", "1,\n", 0)]
+        public void Add_Invliad_Number_Passed_Trow_An_Argument_Exception(string paramters, string input, int expected)
+        {
+            Assert.ThrowsException<ArgumentException>(() => stringCalculator.Add(input));
+        }
+
+        [DataTestMethod]
+        [DataRow("0,1", 1)]
+        [DataRow("1,1", 2)]
+        [DataRow("1,1\n2", 4)]
+        public void Add_Pass_Multiple_String_Numbers_WithCommas_And_NewLine__Return_Their_Sum(string input, int expected)
         {
             Assert.AreEqual(stringCalculator.Add(input), expected);
         }
