@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace NU.StringCalculatorExercise
 {
@@ -31,7 +28,7 @@ namespace NU.StringCalculatorExercise
                     }
                     else
                     {
-                        strDelimiter[0] = customDelimiter;
+                        strDelimiter = Regex.Matches(numbers, @"[^0-9-]").Cast<Match>().Select(m => m.Value).ToArray();
                     }
                 }
 

@@ -90,5 +90,15 @@ namespace NU.StringCalculatorExerciseTest
         {
             Assert.AreEqual(stringCalculator.Add(input), expected);
         }
+
+        [DataTestMethod]
+        [DataRow("//;\n1;2", 3)]
+        [DataRow("//[***]\n1***2***3", 6)]
+        [DataRow("//[**]\n1**2**3", 6)]
+        [DataRow("//[*][%]\n1*2%3", 6)]
+        public void Add_Pass_A_String_That_Contains_Any_length_Multiple_Delimiters_Use_That_Delimiters_Return_Their_Sum(string input, int expected)
+        {
+            Assert.AreEqual(stringCalculator.Add(input), expected);
+        }
     }
 }
